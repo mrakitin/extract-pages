@@ -1,3 +1,4 @@
+import logging
 import argparse
 import os
 import sys
@@ -8,23 +9,27 @@ from PyPDF2 import PdfFileReader, PdfFileWriter
 from tqdm import tqdm
 
 
-def extract_pages(input_files, pages, output_file):
+logger = logging.getLogger(__name__)
+
+
+def extract_pages(input_files, pages, output_file, one_file=True):
     root_dir = Path(os.path.abspath(os.path.dirname(__file__)))
-    print('\n\tRoot dir: {}\n'.format(root_dir))
+    logger.info(f'Root dir: {root_dir}')
 
     pdfs = {}
     for f, p in zip(input_files, pages):
         pdfs[f] = parse_ranges(p)
 
     pdfs = OrderedDict(sorted(pdfs.items(), reverse=True))
-    print(pdfs)
+    logger.info(pdfs)
 
-    one_file = True
-    # one_file = False
+    output_files = []
+
     if one_file:
         output = PdfFileWriter()
 
     for pdf_name, pdf_pages in tqdm(pdfs.items()):
+        print(pdf_name, pdf_pages)
         full_path = root_dir / Path(pdf_name)
 
         inputpdf = PdfFileReader(open(full_path, 'rb'))
@@ -49,6 +54,7 @@ def extract_pages(input_files, pages, output_file):
 
         if not one_file:
             with open(out_name, 'wb') as oStream:
+                output_files.append(out_name)
                 output.write(oStream)
 
         tqdm.write('')
@@ -57,7 +63,10 @@ def extract_pages(input_files, pages, output_file):
         out_name = output_file
         tqdm.write('\n\tOutput file: {}'.format(out_name))
         with open(out_name, 'wb') as oStream:
+            output_files.append(out_name)
             output.write(oStream)
+
+    return output_files
 
 
 def parse_ranges(string):
