@@ -57,9 +57,9 @@ cache:
 
 install:
   # Install this package and the packages listed in requirements.txt.
-  - python3 -m pip install .
+  - pip3 install .
   # Install extra requirements for running tests and building docs.
-  - python3 -m pip install -r requirements-dev.txt
+  - pip3 install -r requirements-dev.txt
 
 script:
   - coverage run -m pytest  # Run the tests and check for test coverage.
