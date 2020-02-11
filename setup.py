@@ -46,7 +46,7 @@ setup(
     packages=find_packages(exclude=['docs', 'tests']),
     entry_points={
         'console_scripts': [
-            'command = extract_pages.extract_pages:main',
+            'extract-pages = extract_pages.extract_pages:main',
         ],
     },
     include_package_data=True,
