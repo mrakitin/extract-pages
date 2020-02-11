@@ -12,7 +12,7 @@ extract-pages
 Extract and combine pages from multiple pdf files
 
 * Free software: 3-clause BSD license
-* Documentation: (COMING SOON!) https://mrakitin.github.io/extract-pages.
+* Documentation: https://mrakitin.github.io/extract-pages.
 
 Features
 --------
