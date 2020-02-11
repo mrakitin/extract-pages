@@ -1,5 +1,9 @@
 os: linux
 language: python
+env:
+  global:
+    # Doctr deploy key for mrakitin/extract-pages
+    - secure: "nJzbHTWU7FZGnNCVvL3PsfDEMuTA26tG1hNiOsECioP4YGjxKvwUp9J2+cC5IkFmnZQNAZswv/wMmgHKMl5CgRDl9blfQv9OAwuoUX66nkmHu144T9+Cu6PE1GMzxYjbEZ8zCzT+ASqMWnr0eE33PLbWQ1w/PBOaRVXelH8xpp4CpdmWmRL62xf0lJTvwrJlVAuxDjqPt4fW2AiWyMxwDFSzBp3Yvn/x+IJlH0KSo17MBsSLhZdVlHnYEphzQC5pbB6y8ak8EpNzUxKGs25tuOeIWMBlS5tTutMMXNzQfEixf2JsdRbUr2vh5ZawHsiXW3w8fMQeCuX/aRSieQ/RjsHAl1jNUgtDKW/F2ep60o/r7VAS/qxKoBYPiodgs42sc94Q/cFXQxVoTS99LId2VUToK8meMyn0OdsjcZXftEyHjbCOm4WVbXDvHaxBK5aVCigBrW3n7XVrToJGI5yqZihhu8FUaFSyeeq4xCiA9Hn3Rq964WF+UHOZPt9YFUdZZEV7qNRnChfAFhyCSD52JaK03hm+R7bKWrbK3+P3wUV4rqc7n36WBLq5p2YKRnEW7s0AgaD4N8a7/dMop6QyWIZnYEf/gn0gUNyxNO8MM1XQMBUmk28wcaUAZkh4gN/wDq0n23qPmgFsYOh15zOjTVZa2R2yVtB6ELiUKSLQsrM="
 jobs:
   include:
     - name: "Python 3.8.0 on Xenial Linux"
