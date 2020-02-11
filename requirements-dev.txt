@@ -6,6 +6,7 @@ flake8
 isort
 pytest
 sphinx
+twine
 # These are dependencies of various sphinx extensions for documentation.
 ipython
 matplotlib
