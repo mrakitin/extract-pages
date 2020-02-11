@@ -13,9 +13,20 @@ logger = logging.getLogger(__name__)
 
 
 def extract_pages(input_files, pages, output_file, one_file=True):
-    root_dir = Path(os.path.abspath(os.path.dirname(__file__)))
-    logger.info(f'Root dir: {root_dir}')
+    """Extract pages from a single or multiple .pdf files and combine them.
 
+    Parameters
+    ----------
+    input_files: list
+        a list of input file names
+    pages: str
+        a list of pages in a string form with no blank spaces, e.g. '1,3-5'
+    output_file: str
+        an output file location. If the ``one_file=False``, the corresponding
+        suffix consisting of the page numbers will be added
+    one_file: bool, optional
+        a flag to save the outputs into one .pdf file
+    """
     pdfs = {}
     for f, p in zip(input_files, pages):
         pdfs[f] = parse_ranges(p)
@@ -30,7 +41,7 @@ def extract_pages(input_files, pages, output_file, one_file=True):
 
     for pdf_name, pdf_pages in tqdm(pdfs.items()):
         print(pdf_name, pdf_pages)
-        full_path = root_dir / Path(pdf_name)
+        full_path = Path(pdf_name)
 
         inputpdf = PdfFileReader(open(full_path, 'rb'))
         msg = 'specified pages range {} is out of range ({})'
