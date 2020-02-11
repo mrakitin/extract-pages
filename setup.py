@@ -46,7 +46,7 @@ setup(
     packages=find_packages(exclude=['docs', 'tests']),
     entry_points={
         'console_scripts': [
-            'extract-pages = extract_pages.extract_pages:main',
+            'extract-pages = extract_pages:main',
         ],
     },
     include_package_data=True,
@@ -55,6 +55,7 @@ setup(
             # When adding files here, remember to update MANIFEST.in as well,
             # or else they will not be included in the distribution on PyPI!
             # 'path/to/data_file',
+            'extract_pages/tests/test_data/*.pdf',
         ]
     },
     install_requires=requirements,
