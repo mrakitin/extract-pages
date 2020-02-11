@@ -38,9 +38,10 @@ def extract_pages(input_files, pages, output_file, one_file=True):
         for page in pdf_pages:
             assert page <= num_pages, msg.format(pdf_name, num_pages)
 
-        n, e = os.path.splitext(full_path)
+        n, e = os.path.splitext(os.path.basename(full_path))
+        out_dir = os.path.dirname(os.path.abspath(output_file))
         pages_range = '-'.join([str(x) for x in pdf_pages])
-        out_name = '{}_{}{}'.format(n, pages_range, e)
+        out_name = os.path.join(out_dir, '{}_{}{}'.format(n, pages_range, e))
         tqdm.write('  Input  file: {} (pages: {} out of total {})'.format(
                    full_path, pages_range, num_pages))
 
