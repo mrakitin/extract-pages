@@ -1,8 +1,10 @@
 import argparse
 import os
+import sys
 from collections import OrderedDict
 from pathlib import Path
-from PyPDF2 import PdfFileWriter, PdfFileReader
+
+from PyPDF2 import PdfFileReader, PdfFileWriter
 from tqdm import tqdm
 
 
