@@ -2,6 +2,13 @@
 Release History
 ===============
 
+Release v0.1.0 (2022-02-19)
+---------------------------
+
+* Use GitHub Actions CI for testing and deployment of docs/packages.
+* Fix minor issue with the order of input files.
+
+
 Release v0.0.2 (2020-02-11)
 ---------------------------
 
