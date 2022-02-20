@@ -39,7 +39,9 @@ jobs:
         run: |
           set -vxeo pipefail
           conda env list
-          pip install --upgrade pip wheel
+          if [ "$RUNNER_OS" != "Windows" ]; then
+              pip install --upgrade pip wheel
+          fi
           pip install -v .
           pip install -r requirements-dev.txt
           pip list
