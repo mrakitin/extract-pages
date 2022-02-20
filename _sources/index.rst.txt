@@ -12,4 +12,3 @@ extract-pages Documentation
    installation
    usage
    release-history
-   min_versions
