@@ -51,3 +51,15 @@ jobs:
         run: |
           set -vxeuo pipefail
           pytest -s -vv
+
+      - name: CLI testing
+        if: matrix.host-os == 'ubuntu-latest'
+        run: |
+          set -vxeuo pipefail
+          sudo apt-get -y update
+          sudo apt-get -y install poppler-utils
+          extract-pages -i extract_pages/tests/test_data/diatonic-harmony-set.pdf extract_pages/tests/test_data/fundamentals-set.pdf -p 1,4-5 3,8-12
+          num_pages=$(pdfinfo output.pdf | grep "Pages:" | awk '{print $2}')
+          if [ "${num_pages}" != "9" ]; then
+              exit 1
+          fi

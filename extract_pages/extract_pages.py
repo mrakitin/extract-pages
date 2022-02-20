@@ -1,13 +1,11 @@
-import logging
 import argparse
+import logging
 import os
 import sys
-from collections import OrderedDict
 from pathlib import Path
 
 from PyPDF2 import PdfFileReader, PdfFileWriter
 from tqdm import tqdm
-
 
 logger = logging.getLogger(__name__)
 
@@ -17,21 +15,23 @@ def extract_pages(input_files, pages, output_file, one_file=True):
 
     Parameters
     ----------
-    input_files: list
+    input_files : list
         a list of input file names
-    pages: str
+    pages : str
         a list of pages in a string form with no blank spaces, e.g. '1,3-5'
-    output_file: str
+    output_file : str
         an output file location. If the ``one_file=False``, the corresponding
         suffix consisting of the page numbers will be added
-    one_file: bool, optional
-        a flag to save the outputs into one .pdf file
+    one_file : bool, optional
+        a flag to save the outputs into one .pdf file (default: True)
     """
     pdfs = {}
     for f, p in zip(input_files, pages):
         pdfs[f] = parse_ranges(p)
 
-    pdfs = OrderedDict(sorted(pdfs.items(), reverse=True))
+    # NOTE: This reversed order sorting may have adverse effect on the resulted
+    # file.  Need to rely on user's input to properly order the files.
+    # pdfs = OrderedDict(sorted(pdfs.items(), reverse=True))
     logger.info(pdfs)
 
     output_files = []
